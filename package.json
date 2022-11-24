@@ -11,8 +11,16 @@
         "jsdom": "^20.0.3",
         "superagent": "^8.0.3"
     },
+    "homepage": "https://github.com/LxtteDev/search-this",
     "repository": {
         "type": "git",
         "url": "https://github.com/LxtteDev/search-this"
-    }
+    },
+    "keywords": [
+        "google",
+        "search",
+        "scrape",
+        "scarper",
+        "json"
+    ]
 }
