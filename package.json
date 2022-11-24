@@ -1,0 +1,15 @@
+{
+  "name": "search-this",
+  "version": "1.0.0",
+  "description": "Search for something on google and get a easy to read JSON response.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lxtte",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^20.0.3",
+    "superagent": "^8.0.3"
+  }
+}
