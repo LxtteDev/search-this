@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lxtte",
-  "license": "ISC",
   "dependencies": {
     "jsdom": "^20.0.3",
     "superagent": "^8.0.3"
