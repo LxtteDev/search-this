@@ -1,6 +1,6 @@
 {
     "name": "search-this",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "Search for something on google and get a easy to read JSON response.",
     "main": "index.js",
     "scripts": {
@@ -21,7 +21,7 @@
         "google",
         "search",
         "scrape",
-        "scarper",
+        "scraper",
         "json"
     ]
 }

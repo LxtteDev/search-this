@@ -1,5 +1,4 @@
-// Carfull... dont trip on the usless lines scatered around.
-
+// Your swimming in dangerous waters
 const jsdom = require("jsdom");
 const superagent = require('superagent')
 
@@ -40,10 +39,13 @@ async function Search(Term) {
         if (Object.prototype.toString.call(card) != "[object HTMLDivElement]") continue
         if (card.id) continue
 
+        // Card type testing
         const infoElements = card.getElementsByClassName("r0bn4c rQMQod")
         const statisticsElements = card.getElementsByClassName("AVsepf")
         const cardName = card.getElementsByClassName("FCUp0c rQMQod")[0]?.textContent
+        const videoElements = card.getElementsByClassName("BNeawe deIvCb AP7Wnd")
 
+        // Knowlage Panel
         if (statisticsElements.length > 0) {
             const info = {
                 name: card.getElementsByTagName("h3")[0].textContent,
@@ -92,6 +94,7 @@ async function Search(Term) {
             continue
         }
 
+        // Featured snippets
         if (infoElements.length > 0) {
             for (const inx in infoElements) {
                 const type = infoElements[inx].textContent
@@ -118,7 +121,9 @@ async function Search(Term) {
             continue
         }
 
+        // Related questions
         if (cardName) {
+            // People also ask
             if (cardName == "People also ask") {
                 const questions = []
 
@@ -139,6 +144,21 @@ async function Search(Term) {
                 data.related_questions = questions
                 continue
             }
+        }
+
+        // Featured video
+        if (videoElements.length > 0) {
+            const video = {}
+
+            const title = videoElements[0]?.textContent
+            const link = card.getElementsByClassName("BNeawe tAd8D AP7Wnd")[0].textContent
+
+
+            if (title.endsWith("- YouTube")) video.title = title.slice(0, title.length - 9).trim()
+            
+            video.link = link
+            data.featured_video = video
+            continue
         }
 
     }
