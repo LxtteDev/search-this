@@ -1,4 +1,4 @@
-// Your swimming in dangerous waters
+// Welcome to the spaggeti jar
 const jsdom = require("jsdom");
 const superagent = require('superagent')
 
@@ -42,7 +42,7 @@ async function Search(Term) {
         // Card type testing
         const infoElements = card.getElementsByClassName("r0bn4c rQMQod")
         const statisticsElements = card.getElementsByClassName("AVsepf")
-        const cardName = card.getElementsByClassName("FCUp0c rQMQod")[0]?.textContent
+        const cardName = card.getElementsByClassName("K8tyEc")[0]?.textContent
         const videoElements = card.getElementsByClassName("BNeawe deIvCb AP7Wnd")
 
         // Knowlage Panel
@@ -55,7 +55,7 @@ async function Search(Term) {
             const link = titleCard.getElementsByClassName("r0bn4c rQMQod")[0]?.textContent
             const title = titleCard.textContent
 
-            info.title = title.slice(0, title.length - link.length).replace(/[^\x20-\x7E]/g, '').trim()
+            if (link) info.title = title.slice(0, title.length - link.length).replace(/[^\x20-\x7E]/g, '').trim()
 
             const descriptionElements = card.getElementsByClassName("BNeawe s3v9rd AP7Wnd")
             for (const index in descriptionElements) {
@@ -144,6 +144,58 @@ async function Search(Term) {
                 data.related_questions = questions
                 continue
             }
+
+            // Related searches
+            if (cardName == "Related searches") {
+                const searches = []
+
+                const relatedPeopleElements = card.getElementsByClassName("duf-h")
+                for (const inx in relatedPeopleElements) {
+                    const search = relatedPeopleElements[inx].parentElement
+                    if (Object.prototype.toString.call(search) != "[object HTMLDivElement]") continue
+                    const append = {
+                        question: search.getElementsByClassName("Lt3Tzc")[0]?.textContent
+                    }
+
+                    // Removed beacuse it dosnt work
+                    /* const persons = []
+                    const personElements = search.getElementsByClassName("BVG0Nb")
+                    for (const ind in personElements) {
+                        const person = personElements[ind]
+                        if (Object.prototype.toString.call(person) != "[object HTMLAnchorElement]") continue
+                        if (person.tagName != "A") continue
+
+                        const name = person.textContent
+                        const link = `https://google.com${person.href?.slice(0, 19 + name.length)}`
+
+                        persons.push({
+                            name: name,
+                            link, link
+                        })
+                    }
+
+                    if (persons.length > 0) append.people = persons */
+                    searches.push(append)
+                }
+
+                const searchElements = card.getElementsByClassName("gGQDvd iIWm4b")
+                for (const inx in searchElements) {
+                    const search = searchElements[inx]
+                    if (Object.prototype.toString.call(search) != "[object HTMLDivElement]") continue
+
+                    const link = search.getElementsByTagName("a")[0]?.href
+
+                    const question = {}
+                    question.question = search.textContent
+                    if (link) question.link = `https://google.com${link}`
+
+                    searches.push(question)
+                }
+
+                data.related_searches = searches
+                continue
+            }
+
         }
 
         // Featured video
