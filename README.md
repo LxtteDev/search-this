@@ -70,35 +70,35 @@ const search = require("search-this")
   "related_searches": [
     {
       "question": "Joe Biden net worth",
-      "link": "https://google.com/search?ie=UTF-8&q=Joe+Biden+net+worth&sa=X&ved=2ahUKEwj_2IHBr8b7AhWbJzQIHbgyBgcQ1QJ6BAgCEAI"
+      "link": "https://google.com/search?ie=UTF-8&q=Joe+Biden+net+worth"
     },
     {
       "question": "Young Joe Biden",
-      "link": "https://google.com/search?ie=UTF-8&q=Young+Joe+Biden&sa=X&ved=2ahUKEwj_2IHBr8b7AhWbJzQIHbgyBgcQ1QJ6BAgCEAQ"
+      "link": "https://google.com/search?ie=UTF-8&q=Young+Joe+Biden"
     },
     {
       "question": "How old is Joe Biden",
-      "link": "https://google.com/search?ie=UTF-8&q=How+old+is+Joe+Biden&sa=X&ved=2ahUKEwj_2IHBr8b7AhWbJzQIHbgyBgcQ1QJ6BAgCEAY"
+      "link": "https://google.com/search?ie=UTF-8&q=How+old+is+Joe+Biden"
     },
     {
       "question": "Jill Biden",
-      "link": "https://google.com/search?ie=UTF-8&q=Jill+Biden&sa=X&ved=2ahUKEwj_2IHBr8b7AhWbJzQIHbgyBgcQ1QJ6BAgCEAg"
+      "link": "https://google.com/search?ie=UTF-8&q=Jill+Biden"
     },
     {
       "question": "When was Joe Biden elected",
-      "link": "https://google.com/search?ie=UTF-8&q=When+was+Joe+Biden+elected&sa=X&ved=2ahUKEwj_2IHBr8b7AhWbJzQIHbgyBgcQ1QJ6BAgCEAo"
+      "link": "https://google.com/search?ie=UTF-8&q=When+was+Joe+Biden+elected"
     },
     {
       "question": "Joe Biden wife",
-      "link": "https://google.com/search?ie=UTF-8&q=Joe+Biden+wife&sa=X&ved=2ahUKEwj_2IHBr8b7AhWbJzQIHbgyBgcQ1QJ6BAgCEAw"
+      "link": "https://google.com/search?ie=UTF-8&q=Joe+Biden+wife"
     },
     {
       "question": "Joe Biden first wife",
-      "link": "https://google.com/search?ie=UTF-8&q=Joe+Biden+first+wife&sa=X&ved=2ahUKEwj_2IHBr8b7AhWbJzQIHbgyBgcQ1QJ6BAgCEA4"
+      "link": "https://google.com/search?ie=UTF-8&q=Joe+Biden+first+wife"
     },
     {
       "question": "Joe Biden family",
-      "link": "https://google.com/search?ie=UTF-8&q=Joe+Biden+family&sa=X&ved=2ahUKEwj_2IHBr8b7AhWbJzQIHbgyBgcQ1QJ6BAgCEBA"
+      "link": "https://google.com/search?ie=UTF-8&q=Joe+Biden+family"
     }
   ]
 }
@@ -109,4 +109,4 @@ The MIT License (MIT)
 Do with this what you want.
 
 ## Support
-If you really like this project please consider [buying me a coffe](https://www.buymeacoffee.com/lxttedeveloper).
+If you really like this project please consider [buying me a coffee](https://www.buymeacoffee.com/lxttedeveloper).

@@ -187,7 +187,7 @@ async function Search(Term) {
 
                     const question = {}
                     question.question = search.textContent
-                    if (link) question.link = `https://google.com${link}`
+                    if (link) question.link = `https://google.com${link.slice(0, 19 + search.textContent.length)}`
 
                     searches.push(question)
                 }
