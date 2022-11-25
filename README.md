@@ -22,7 +22,7 @@ const search = require("search-this")
   "search_info": {
     "link": "https://www.google.com/search?q=Who+is+joe+biden?",
     "q": "Who is joe biden?",
-    "created_at": "Still not telling",
+    "created_at": "You'll never know",
     "time_taken": 0
   },
   "featured_snippets": {
@@ -63,9 +63,6 @@ const search = require("search-this")
       "children": "Hunter Biden, Naomi Biden, Ashley Biden, and more",
       "grandchildren": "Navy Joan Roberts, Robert Biden II, Maisy Biden, and more"
     }
-  },
-  "featured_video": {
-    "link": "View all"
   },
   "related_searches": [
     {

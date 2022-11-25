@@ -1,6 +1,6 @@
 {
     "name": "search-this",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Search for something on google and get a easy to read JSON response.",
     "main": "index.js",
     "scripts": {

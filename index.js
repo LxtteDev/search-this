@@ -202,13 +202,15 @@ async function Search(Term) {
         if (videoElements.length > 0) {
             const video = {}
 
-            const title = videoElements[0]?.textContent
-            const link = card.getElementsByClassName("BNeawe tAd8D AP7Wnd")[0].textContent
-
-
+            const title = videoElements[0]?.childNodes[0].nodeValue
+            console.log(title)
+            if (title == undefined || title == null) continue
             if (title.endsWith("- YouTube")) video.title = title.slice(0, title.length - 9).trim()
-            
+            if (video.title == undefined) video.title = title
+
+            const link = card.getElementsByClassName("BNeawe tAd8D AP7Wnd")[0].textContent
             video.link = link
+
             data.featured_video = video
             continue
         }
