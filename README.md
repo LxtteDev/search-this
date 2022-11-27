@@ -101,7 +101,8 @@ const search = require("search-this")
 }
 ```
 ## License
-The MIT License (MIT).
+The MIT License (MIT)
+
 Fork it, cry when you read it, give up trying to understand it. Do whatever you want with this.
 
 ## Support
