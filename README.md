@@ -1,6 +1,6 @@
 # search-this
 
-Google search API that I made because I didnt want to pay for [SerpAPI](https://serpapi.com/). It dosnt require any keys or authorization. Just search and get a JSON response that includes the search info, featured snippets, realated questons, information found on the knowledge panel, information in the info card, info in the featured video, and partial support for related searches (Currently no names on the searches with drop downs).
+Google search API that I made because I didnt want to pay for [SerpAPI](https://serpapi.com/). It dosnt require any keys or authorization. Just search and get a JSON response that includes the search info, featured snippets, realated questons, information found on the knowledge panel, information in the info card, info in the featured video, partial support for related searches (Currently no names on the searches with drop downs), and calculator results.
 
 ## Install
 ```
@@ -22,7 +22,7 @@ const search = require("search-this")
   "search_info": {
     "link": "https://www.google.com/search?q=Who+is+joe+biden?",
     "q": "Who is joe biden?",
-    "created_at": "You'll never know",
+    "created_at": "Before the latest update",
     "time_taken": 0
   },
   "featured_snippets": {
@@ -102,8 +102,7 @@ const search = require("search-this")
 ```
 ## License
 The MIT License (MIT)
-
-Do with this what you want.
+Fork it, cry when you read it, give up trying to understand it. Do whatever you want with this.
 
 ## Support
 If you really like this project please consider [buying me a coffee](https://www.buymeacoffee.com/lxttedeveloper).

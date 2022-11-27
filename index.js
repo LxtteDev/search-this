@@ -1,4 +1,4 @@
-// Welcome to the spaggeti jar
+// If you see jank, leave it. It holds this code together.
 const jsdom = require("jsdom");
 const superagent = require('superagent')
 
@@ -19,14 +19,14 @@ async function requestPage(Link) {
  */
 async function Search(Term) {
     const now = new Date()
-    const searchTerm = Term.replaceAll(" ", "+")
+    const searchTerm = encodeURIComponent(Term.trim()).replaceAll("%20", "+").replaceAll("%3F", "?")
 
     const link = `https://www.google.com/search?q=${searchTerm}`
     const html = await requestPage(link)
 
     let data = {
         "search_info": {
-            link: `https://www.google.com/search?q=${html.window.document.getElementsByClassName("noHIxc")[0]?.value.replaceAll(" ", "+")}`,
+            link: `https://www.google.com/search?q=${html.window.document.getElementsByClassName("noHIxc")[0]?.value.replaceAll("+", "%2B").replaceAll(" ", "+")}`,
             q: html.window.document.getElementsByClassName("noHIxc")[0]?.value,
             created_at: now.toUTCString(),
         }
@@ -44,6 +44,20 @@ async function Search(Term) {
         const statisticsElements = card.getElementsByClassName("AVsepf")
         const cardName = card.getElementsByClassName("K8tyEc")[0]?.textContent
         const videoElements = card.getElementsByClassName("BNeawe deIvCb AP7Wnd")
+        const calculatorElement = card.getElementsByClassName("BNeawe iBp4i AP7Wnd")
+
+        // Calculator Result
+        if (calculatorElement.length > 0) {
+            const answer = calculatorElement[0].textContent
+            const question = card.getElementsByClassName("BNeawe tAd8D AP7Wnd")[0].textContent.slice(0, -1).trim()
+
+            data.calculator_result = {
+                "expression": question,
+                "result": Number(answer) || answer
+            }
+
+            continue
+        }
 
         // Knowlage Panel
         if (statisticsElements.length > 0) {
