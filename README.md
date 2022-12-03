@@ -1,6 +1,6 @@
 # search-this
 
-Google search API that I made because I didnt want to pay for [SerpAPI](https://serpapi.com/). It dosnt require any keys or authorization. Just search and get a JSON response that includes the search info, featured snippets, realated questons, information found on the knowledge panel, information in the info card, info in the featured video, partial support for related searches (Currently no names on the searches with drop downs), and calculator results.
+Google search API that I made because I didnt want to pay for [SerpAPI](https://serpapi.com/). It dosnt require any keys or authorization. Just search and get a JSON response that includes the search info, featured snippets, realated questons, information found on the knowledge panel, information in the info card, info in the featured video, partial support for related searches (Currently no names on the searches with drop downs), calculator results, and organic link results (Finally).
 
 ## Install
 ```
@@ -22,9 +22,68 @@ const search = require("search-this")
   "search_info": {
     "link": "https://www.google.com/search?q=Who+is+joe+biden?",
     "q": "Who is joe biden?",
-    "created_at": "Before the latest update",
-    "time_taken": 0
+    "created_at": "The time the sun was between 0 and 180 degrees in the sky.",
+    "time_taken": 0.379
   },
+  "results": [
+    {
+      "position": 1,
+      "title": "Joe Biden: The President | The White House",
+      "link": "https://www.whitehouse.gov/administration/president-biden/",
+      "snippet": "President Biden represented Delaware for 36 years in the U.S. Senate before becoming the 47th Vice President of the United States. As President, Biden will ..."
+    },
+    {
+      "position": 2,
+      "title": "Joe Biden | Biography, Family, Policies, & Facts | Britannica",
+      "link": "https://www.britannica.com/biography/Joe-Biden",
+      "snippet": "Joe Biden, byname of Joseph Robinette Biden, Jr., (born November 20, 1942, Scranton, Pennsylvania, U.S.), 46th president of the United ...",
+      "date": "Nov 16, 2022",
+      "siteLinks": [
+        {
+          "title": "Facts & Related Content",
+          "link": "https://www.britannica.com/facts/Joe-Biden"
+        },
+        {
+          "title": "Joe Biden summary",
+          "link": "https://www.britannica.com/summary/Joe-Biden"
+        },
+        {
+          "title": "Kamala Harris",
+          "link": "https://www.britannica.com/biography/Kamala-Harris"
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "title": "Vice President Joe Biden - Obama White House Archives",
+      "link": "https://obamawhitehouse.archives.gov/vp",
+      "snippet": "Joseph Robinette Biden, Jr., represented Delaware for 36 years in the U.S. Senate before becoming the 47th and current Vice President of the United States."
+    },
+    {
+      "position": 4,
+      "title": "Vice President Joe Biden | The White House",
+      "link": "https://obamawhitehouse.archives.gov/realitycheck/node/110",
+      "snippet": "Joseph Robinette Biden, Jr., was born November 20, 1942, in Scranton, Pennsylvania, the first of four siblings. In 1953, the Biden family moved from ..."
+    },
+    {
+      "position": 5,
+      "title": "Joe Biden: Life Before the Presidency - Miller Center",
+      "link": "https://millercenter.org/joe-biden-life-presidency",
+      "snippet": "Joseph Robinette Biden Jr. was born on November 20, 1942, in Scranton, Pennsylvania, as World War II raged overseas. The first child of Catherine Eugenia ..."
+    },
+    {
+      "position": 6,
+      "title": "Joe Biden - Business Standard",
+      "link": "https://www.business-standard.com/about/who-is-joe-biden",
+      "snippet": "A member of the Democratic Party, he served as the 47th vice president from 2009 to 2017 under Barack Obama and represented Delaware in the United States Senate ..."
+    },
+    {
+      "position": 7,
+      "title": "Joe Biden - Official Campaign Page - Joe Biden for President ...",
+      "link": "https://joebiden.com/",
+      "snippet": "Donate now to help elect Democrats up and down the ballot ... The Democratic Party is responsible for electing Democrats from the school board to the White House."
+    }
+  ],
   "featured_snippets": {
     "description": "A member of the Democratic Party, he previously served as the 47th vice president from 2009 to 2017 under President Barack Obama, and represented Delaware in the United States Senate from 1973 to 2009. Joseph Robinette Biden Jr. Scranton, Pennsylvania, U.S.",
     "source": {
@@ -100,6 +159,10 @@ const search = require("search-this")
   ]
 }
 ```
+
+## Issues
+If you have any issues or error please report it so I can fix them.0
+
 ## License
 The MIT License (MIT)
 

@@ -1,4 +1,4 @@
-// If you see jank, leave it. It holds this code together.
+// This is why you choose anything except javascript
 const jsdom = require("jsdom");
 const superagent = require('superagent')
 
@@ -12,6 +12,19 @@ async function requestPage(Link) {
     const html = new jsdom.JSDOM(response.text)
 
     return html
+}
+
+/**
+ * @param {Element} element 
+ */
+async function getTextcontentWithoutChildren(element) {
+    for (let j = 0 ; j < element.childNodes.length; j++) {
+        const child = element.childNodes[j]
+        
+        if (child.length) {
+            return child.nodeValue
+        }
+    }
 }
 
 /**
@@ -29,9 +42,61 @@ async function Search(Term) {
             link: `https://www.google.com/search?q=${html.window.document.getElementsByClassName("noHIxc")[0]?.value.replaceAll("+", "%2B").replaceAll(" ", "+")}`,
             q: html.window.document.getElementsByClassName("noHIxc")[0]?.value,
             created_at: now.toUTCString(),
-        }
+        },
+        "results": []
     }
 
+    // Links
+    const links = html.window.document.getElementsByClassName("Gx5Zad fP1Qef xpd EtOod pkphOe")
+    for (const index in links) {
+        const link = links[index]
+
+        if (Object.prototype.toString.call(link) != "[object HTMLDivElement]") continue
+        if (link.id) continue
+
+        const titleParts = link.getElementsByClassName("egMi0 kCrYT")[0]
+        const title = titleParts.getElementsByClassName("zBAuLc l97dzf")[0]?.textContent
+        const resultLink = titleParts.getElementsByTagName("a")[0].href.split("&sa")[0].slice(7)
+        const displayLink = titleParts.getElementsByClassName("BNeawe UPmit AP7Wnd lRVwie")[0]?.textContent
+
+        const contentParts = link.getElementsByClassName("BNeawe s3v9rd AP7Wnd")[0]
+        const snippet = await getTextcontentWithoutChildren(contentParts.getElementsByClassName("BNeawe s3v9rd AP7Wnd")[0])
+        const date = contentParts.getElementsByClassName("BNeawe s3v9rd AP7Wnd")[0]?.getElementsByClassName("r0bn4c rQMQod")[0]?.textContent
+
+        const result = {
+            position: Number(index) + 1,
+            title: title,
+            link: resultLink,
+            displayLink: displayLink,
+            snippet: snippet.replaceAll("�", " "),
+        }
+
+        if (date) result.date = date
+
+        const siteLinks = link.getElementsByClassName("XLloXe AP7Wnd")
+        if (siteLinks.length > 0) {
+            const sl = []
+
+            for (const ind in siteLinks) {
+                const site = siteLinks[ind]
+
+                if (Object.prototype.toString.call(site) != "[object HTMLSpanElement]") continue
+
+                const info = {
+                    title: site.textContent,
+                    link: site.parentElement.href.split("&sa")[0].slice(7).replaceAll("%25", "%")
+                }
+
+                sl.push(info)
+            }
+
+            result.siteLinks = sl
+        }
+
+        data.results.push(result)
+    }
+
+    // Extra information
     const cards = html.window.document.getElementsByClassName("Gx5Zad xpd EtOod pkphOe")
     for (const index in cards) {
         const card = cards[index]
@@ -228,11 +293,10 @@ async function Search(Term) {
             data.featured_video = video
             continue
         }
-
     }
 
     const deltaTime = new Date() - now
-    data.search_info.time_taken = deltaTime / 100
+    data.search_info.time_taken = deltaTime / 1000
 
     return data
 }
