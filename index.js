@@ -1,4 +1,4 @@
-// This is why you choose anything except javascript
+// This is where men become boys
 const jsdom = require("jsdom");
 const superagent = require('superagent')
 
@@ -113,12 +113,26 @@ async function Search(Term) {
 
         // Calculator Result
         if (calculatorElement.length > 0) {
-            const answer = calculatorElement[0].textContent
             const question = card.getElementsByClassName("BNeawe tAd8D AP7Wnd")[0].textContent.slice(0, -1).trim()
+            const answer = calculatorElement[0].textContent
 
-            data.calculator_result = {
-                "expression": question,
-                "result": Number(answer) || answer
+            const isExchange = card.getElementsByClassName("uEec3 AP7Wnd")[0]?.textContent == "Disclaimer"
+
+            if (isExchange) {
+                const from = question.replaceAll(/[^a-zA-Z ]/gm, "").trim()
+                const to = answer.replaceAll(/[^a-zA-Z ]/gm, "").trim()
+                const expression = question.replaceAll(/[^0-9.-]/gm, "").trim()
+                const result = answer.replaceAll(/[^0-9.-]/gm, "").trim()
+
+                data.exchange_result = {
+                    "from": [ from, expression ],
+                    "to": [ to, result ],
+                }
+            } else {
+                data.calculator_result = {
+                    "expression": question,
+                    "result": Number(answer) || answer
+                }
             }
 
             continue
