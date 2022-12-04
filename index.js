@@ -1,4 +1,4 @@
-// This is where men become boys
+// Strings are awful
 const jsdom = require("jsdom");
 const superagent = require('superagent')
 
@@ -7,7 +7,10 @@ const superagent = require('superagent')
  * @returns {jsdom.JSDOM}
  */
 async function requestPage(Link) {
-    const response = await superagent.get(Link)
+    // const response = await superagent.get(Link)
+    const response = {
+        text: await require("fs").readFileSync("pages/cache/joesmama.htm")
+    }
 
     const html = new jsdom.JSDOM(response.text)
 
@@ -111,12 +114,20 @@ async function Search(Term) {
         const videoElements = card.getElementsByClassName("BNeawe deIvCb AP7Wnd")
         const calculatorElement = card.getElementsByClassName("BNeawe iBp4i AP7Wnd")
 
-        // Calculator Result
+        // Data results
         if (calculatorElement.length > 0) {
-            const question = card.getElementsByClassName("BNeawe tAd8D AP7Wnd")[0].textContent.slice(0, -1).trim()
+            let question = card.getElementsByClassName("BNeawe tAd8D AP7Wnd")[0].textContent
+            const questionElements = card.getElementsByClassName("BNeawe s3v9rd AP7Wnd")
+            for (const ind in questionElements) {
+                const element = questionElements[ind]
+                if (Object.prototype.toString.call(element) != "[object HTMLSpanElement]") continue
+                question += element.textContent
+            }
+
             const answer = calculatorElement[0].textContent
 
             const isExchange = card.getElementsByClassName("uEec3 AP7Wnd")[0]?.textContent == "Disclaimer"
+            const isAnswer = question.replaceAll(/[0-9]/gm, "") == question
 
             if (isExchange) {
                 const from = question.replaceAll(/[^a-zA-Z ]/gm, "").trim()
@@ -128,9 +139,14 @@ async function Search(Term) {
                     "from": [ from, expression ],
                     "to": [ to, result ],
                 }
+            } else if (isAnswer) {
+                data.question_result = {
+                    "question": question,
+                    "answer": answer
+                }
             } else {
                 data.calculator_result = {
-                    "expression": question,
+                    "expression": question.replaceAll("=", " ").trim(),
                     "result": Number(answer) || answer
                 }
             }

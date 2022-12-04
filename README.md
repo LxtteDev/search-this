@@ -1,6 +1,10 @@
 # search-this
 
-Google search API that I made because I didnt want to pay for [SerpAPI](https://serpapi.com/). It dosnt require any keys or authorization. Just search and get a JSON response that includes the search info, featured snippets, realated questons, information found on the knowledge panel, information in the info card, info in the featured video, partial support for related searches (Currently no names on the searches with drop downs), calculator results, organic link results, and currency exchanging.
+Google search API that I made because I didnt want to pay for [SerpAPI](https://serpapi.com/). It dosnt require any keys or authorization. Just search and get a JSON response that includes the search info, featured snippets, realated questons, information found on the knowledge panel, information in the info card, info in the featured 
+video, partial support for related searches (Currently no names on the searches with drop downs), calculator results, organic link results, and currency exchanging.
+
+**1.3.1**
+Small bug fix that would occur when the calculator would return a string.
 
 ## Install
 ```
