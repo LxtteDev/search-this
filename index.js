@@ -7,10 +7,7 @@ const superagent = require('superagent')
  * @returns {jsdom.JSDOM}
  */
 async function requestPage(Link) {
-    // const response = await superagent.get(Link)
-    const response = {
-        text: await require("fs").readFileSync("pages/cache/joesmama.htm")
-    }
+    const response = await superagent.get(Link)
 
     const html = new jsdom.JSDOM(response.text)
 
